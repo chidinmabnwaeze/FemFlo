@@ -11,14 +11,14 @@ export default function Header({ title, menus }: HeaderProps) {
     { name: "Contact" },
   ];
   return (
-    <main>
-      <div className="logo">
+    <main className="flex justify-between items-center">
+      <div className="logo flex ">
         <img src="" alt="logo" />
-        <h1>MyFemFlo</h1>
+        <h1 className="text-2xl px-2 text-[#784AB7]">MyFemFlo</h1>
       </div>
-      <nav className="nav-menu">
+      <nav className="nav-menu flex">
         {menu.map((item, index) => (
-          <ul key={index}>
+          <ul key={index} className="mr-4">
             <li>
               <a href="">{item.name}</a>
             </li>
