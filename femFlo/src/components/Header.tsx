@@ -1,6 +1,8 @@
+import logo from "../assets/logo/image 21.png";
+
 interface HeaderProps {
   title: string;
-//   menus: [];
+  //   menus: [];
 }
 
 export default function Header({ title, menus }: HeaderProps) {
@@ -12,8 +14,8 @@ export default function Header({ title, menus }: HeaderProps) {
   ];
   return (
     <main className="flex justify-between items-center">
-      <div className="logo flex ">
-        <img src="" alt="logo" />
+      <div className="logo flex items-center ">
+        <img src={logo} alt="logo" />
         <h1 className="text-2xl px-2 text-[#784AB7]">MyFemFlo</h1>
       </div>
       <nav className="nav-menu flex">
