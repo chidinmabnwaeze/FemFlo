@@ -13,7 +13,7 @@ export default function Header({ title, menus }: HeaderProps) {
     { name: "Contact" },
   ];
   return (
-    <main className="flex justify-between items-center">
+    <main className="flex justify-between items-center bg-[#eeeaff]">
       <div className="logo flex items-center ">
         <img src={logo} alt="logo" />
         <h1 className="text-2xl px-2 text-[#784AB7]">MyFemFlo</h1>
