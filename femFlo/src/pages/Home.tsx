@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import homeImg from "../assets/images/image 2.png";
-import img1 from "../assets/images/image 18.png"
+import img1 from "../assets/images/image 18.png";
+import logo from "../assets/logo/image 21.png";
+import heroBg from "../assets/images/top-view-calendar-with-tampon-pills.jpg";
 
 interface CardProps {
   icon: string;
@@ -14,6 +16,21 @@ interface FeatureProps {
   img: string;
 }
 
+interface ArticlesProps {
+  title: string;
+  text: string;
+  button: () => void;
+  author: string;
+  date: string;
+}
+
+interface StruggleProps {
+  title: string;
+  text: string;
+  author: string;
+  // index: number;
+}
+
 const Home = () => {
   const cards: CardProps[] = [
     {
@@ -23,12 +40,12 @@ const Home = () => {
     },
     {
       icon: "",
-      title: "Accuracy",
+      title: "Accountability",
       text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quaerat dicta odit libero itaque velit non tenetur atque sequi veniam voluptates dolor, rerum exercitationem, deserunt eligendi repudiandae cumque nam neque!",
     },
     {
       icon: "",
-      title: "Accuracy",
+      title: "Privacy",
       text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quaerat dicta odit libero itaque velit non tenetur atque sequi veniam voluptates dolor, rerum exercitationem, deserunt eligendi repudiandae cumque nam neque!",
     },
   ];
@@ -37,14 +54,70 @@ const Home = () => {
     {
       title: "Cycle & Ovulation Tracking",
       text: "Easily track your menstrual cycle and ovulation with PCOS-specific insights to understand your body's patterns.",
-      img: img1 ,
+      img: img1,
+    },
+    {
+      title: "Lifestyle Tips from Health Experts",
+      text: "Get simple, expert tips on diet, exercise, and stress to manage POOS and boost your well-being.",
+      img: img1,
+    },
+    {
+      title: "Community Support",
+      text: "Join a safe, anonymous community to share and connect with others living with PCOS.",
+      img: img1,
     },
   ];
+
+  const tips: ArticlesProps[] = [
+    {
+      title: "PCOS FAQs",
+      text: "Straightfoward Answers to the Questions You're (Probably) Googling",
+      button: () => (onClick) => new page(),
+      author: "Health Tips",
+      date: "Jun 30, 2025",
+    },
+    {
+      title: "PCOS FAQs",
+      text: "Straightfoward Answers to the Questions You're (Probably) Googling",
+      button: () => (onClick) => new page(),
+      author: "Health Tips",
+      date: "Jun 30, 2025",
+    },
+  ];
+
+  const struggle: StruggleProps[] = [
+    {
+      title: "I'm managing alone with no support",
+      text: "I have irregular periods and struggle with weight loss, but I've never had proper medical guidance. I feel like I'm managing everything on my own and need a community of women who understand what I'm going through.",
+      author: "Anonymous",
+      // index: "Jun 30, 2025",
+    },
+    {
+      title: "My symptoms affect everything",
+      text: "Irregular periods, excess hair, acne, weight gain, mood swings - PCOS impacts my daily life significantly. I'm somewhat informed but still struggle with managing everything. I need personalized help that addresses all my symptoms, not just periods.",
+      author: "Anonymous",
+      // index: "Jun 30, 2025",
+    },
+    {
+      title: "I need more than just period tracking",
+      text: "I have irregular periods, acne, and mood swings, but most apps only track periods. I need something that helps me track all my symptoms, connects me with professionals, and gives me mental health support too.",
+      author: "Anonymous",
+      // index: "Jun 30, 2025",
+    },
+  ];
+
   return (
     <>
-        <Header title="Home" />
+      <Header title="Home" />
       <main className="">
-        <section className="hero bg-[#eeeaff] min-h-screen m-auto">
+        <section
+          className="hero bg-[#eeeaff] min-h-screen m-auto"
+          // style={{
+          //   backgroundImage: `linear-gradient(rgba(238,234,255,0.95), rgba(120,74,183,0.85)), url(${heroBg})`,
+          // backgroundPosition: "bottom",
+          //   backgroundBlendMode: "overlay",
+          // }}
+        >
           <div className="max-w-7xl mx-auto px-6 flex justify-between items-center pt-15">
             <div className="">
               <p className=" font-medium text-xl bg-[#d8c0fc] text-[#784ab7] inline p-3 px-6 rounded-full">
@@ -80,7 +153,7 @@ const Home = () => {
           <div className="card-container grid grid-cols-3 gap-20 mt-15">
             {cards.map((card, index) => (
               <div
-                className="card border border-gray-100 p-5 bg-[#efe4ff] rounded-xl "
+                className="card border border-gray-100 p-5 bg-[#efe4ff] rounded-xl cursor-pointer hover:transform transition hover:translate-y-1.5 hover:border-[#784ab7] "
                 key={index}
               >
                 <img src="" alt="" />
@@ -96,17 +169,75 @@ const Home = () => {
         <section className="bg-[#352055] rounded-t-4xl p-10">
           <h1 className="text-[200px] text-white font-bold"> Everything </h1>
           <h1 className="text-end text-[150px] text-[#d8c0fc] font-bold">
-            You Need
+            You Need !
           </h1>
 
           <section className="features">
             {features.map((item, index) => (
-              <div className="container flex justify-center items-center text-white" key={index}>
-                <div className="bg-[#d8cceb2f] p-6 rounded-2xl min-h-72 items-center">
-                  <h1 className="text-2xl">{item.title}</h1>
+              <div
+                className={`container flex justify-between items-center m-8 text-white ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
+                key={index}
+              >
+                <div className="bg-[#54347e] p-6 mx-6 rounded-2xl w-2/4 h-72 flex-col justify-center items-center">
+                  <h1 className="text-2xl my-4">{item.title}</h1>
                   <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
                 </div>
                 <div>{item.img}</div>
+              </div>
+            ))}
+          </section>
+        </section>
+
+        <section className="tips flex flex-col justify-center items-center m-30 ">
+          <h1 className="text-4xl font-bold text-[#784ab7]">Learn & Thrive</h1>
+          <p className="text-xl">
+            Medical Insights and practical advice for your wellness
+          </p>
+
+          <section className=" flex m-12">
+            {tips.map((item, index) => (
+              <div
+                className=" p-6 mx-6 rounded-2xl border border-gray-100"
+                key={index}
+              >
+                <img src={logo} className="rounded-full w-14" alt="logo" />
+                <h1 className="text-2xl font-semibold my-4">{item.title}</h1>
+                <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
+                <button className="rounded p-3 mt-8 bg-[#784ab7] text-white">
+                  Read More
+                </button>
+                <div className="pt-8">
+                  <h1 className="font-semibold text-[#784ab7] ">
+                    {item.author}
+                  </h1>
+                  <p>{item.date}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+        </section>
+
+        <section className="stories flex flex-col justify-center items-center p-30 bg-[#eeeaff] ">
+          <h1 className="text-4xl font-bold text-[#784ab7]">
+            We Heard Your Struggles
+          </h1>
+          <p className="text-xl">So we built something better.</p>
+
+          <section className=" flex m-12">
+            {struggle.map((item, index) => (
+              <div
+                className=" p-6 mx-6 rounded-2xl border border-gray-100 bg-white"
+                key={index}
+              >
+                <h1 className="text-2xl font-semibold my-4">"{item.title}"</h1>
+                <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
+
+                <div className="pt-8">
+                  <h1 className="font-semibold text-[#784ab7] ">
+                    {item.author}
+                  </h1>
+                  <p>{item.index}</p>
+                </div>
               </div>
             ))}
           </section>

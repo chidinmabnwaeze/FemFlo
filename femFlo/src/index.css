@@ -3,10 +3,10 @@
 *{
   font-family: "Montserrat", sans-serif;
 }
-.hero{
-  background-image: "./assets/images/top-view-calendar-with-tampon-pills.jpg" ;
+/* .hero{
+  background-image: linear-gradient(#eeeaff, #784ab7), url("./assets/images/top-view-calendar-with-tampon-pills.jpg") ;
   background-size: cover;
-}
+} */
 
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
