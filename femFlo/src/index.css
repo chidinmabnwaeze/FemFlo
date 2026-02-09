@@ -3,6 +3,12 @@
 *{
   font-family: "Montserrat", sans-serif;
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
 /* .hero{
   background-image: linear-gradient(#eeeaff, #784ab7), url("./assets/images/top-view-calendar-with-tampon-pills.jpg") ;
   background-size: cover;

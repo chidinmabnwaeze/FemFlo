@@ -111,14 +111,18 @@ const Home = () => {
       <Header title="Home" />
       <main className="">
         <section
-          className="hero bg-[#eeeaff] min-h-screen m-auto"
+          className="hero relative bg-[#eeeaff] min-h-screen overflow-hidden"
+
           // style={{
           //   backgroundImage: `linear-gradient(rgba(238,234,255,0.95), rgba(120,74,183,0.85)), url(${heroBg})`,
           // backgroundPosition: "bottom",
           //   backgroundBlendMode: "overlay",
           // }}
         >
-          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center pt-15">
+          <div className="absolute w-[600px] h-[600px] bg-[#d8c0fc] opacity-40 blur-[150px] rounded-full top-0 -left-40"></div>
+          <div className="absolute w-[500px] h-[500px] bg-[#784ab7] opacity-20 blur-[130px] rounded-full bottom-0 right-0"></div>
+
+          <div className=" relative z-10 max-w-7xl mx-auto px-6 flex justify-between items-center pt-15">
             <div className="">
               <p className=" font-medium text-xl bg-[#d8c0fc] text-[#784ab7] inline p-3 px-6 rounded-full">
                 Your Holistic PCOS Companion
@@ -136,7 +140,11 @@ const Home = () => {
               </button>
             </div>
             <div>
-              <img src={homeImg} alt="" />
+              <img
+                src={homeImg}
+                alt=""
+                className="animate-[float_6s_ease-in-out_infinite]"
+              />
             </div>
           </div>
           <section className="mt-35 bg-[#d8c0fc] p-30 rounded-2xl max-w-7xl mx-auto border border-white">
@@ -153,11 +161,11 @@ const Home = () => {
           <div className="card-container grid grid-cols-3 gap-20 mt-15">
             {cards.map((card, index) => (
               <div
-                className="card border border-gray-100 p-5 bg-[#efe4ff] rounded-xl cursor-pointer hover:transform transition hover:translate-y-1.5 hover:border-[#784ab7] "
+                className="group border border-white/40 bg-white/60 backdrop-blur-md p-8 rounded-2xl shadow-md transition-all duration-500 hover:-translate-y-3 hover:shadow-xl hover:border-[#784ab7]"
                 key={index}
               >
                 <img src="" alt="" />
-                <h1 className="text-xl m-4 text-[#784ab7] font-semibold">
+                <h1 className="text-xl m-4 text-[#784ab7] font-semibold group-hover:translate-x-1 transition">
                   {card.title}
                 </h1>
                 <p>{card.text}</p>
@@ -178,7 +186,7 @@ const Home = () => {
                 className={`container flex justify-between items-center m-8 text-white ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
                 key={index}
               >
-                <div className="bg-[#54347e] p-6 mx-6 rounded-2xl w-2/4 h-72 flex-col justify-center items-center">
+                <div className="bg-[#54347e]/80 backdrop-blur-md border border-white/10 p-8 mx-6 rounded-3xl w-2/4 h-72 shadow-lg hover:shadow-[#784ab7]/40 transition duration-500">
                   <h1 className="text-2xl my-4">{item.title}</h1>
                   <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
                 </div>
@@ -197,13 +205,13 @@ const Home = () => {
           <section className=" flex m-12">
             {tips.map((item, index) => (
               <div
-                className=" p-6 mx-6 rounded-2xl border border-gray-100"
+                className="group p-8 mx-6 rounded-3xl bg-white shadow-lg hover:-translate-y-3 hover:shadow-2xl transition-all duration-500"
                 key={index}
               >
                 <img src={logo} className="rounded-full w-14" alt="logo" />
                 <h1 className="text-2xl font-semibold my-4">{item.title}</h1>
                 <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
-                <button className="rounded p-3 mt-8 bg-[#784ab7] text-white">
+                <button className="rounded-full px-6 py-3 mt-8 bg-[#784ab7]  text-white shadow-md group-hover:scale-105 transition">
                   Read More
                 </button>
                 <div className="pt-8">
@@ -217,26 +225,42 @@ const Home = () => {
           </section>
         </section>
 
-        <section className="stories flex flex-col justify-center items-center p-30 bg-[#eeeaff] ">
+        <section className="relative overflow-hidden flex flex-col items-center py-32 bg-[#eeeaff]">
           <h1 className="text-4xl font-bold text-[#784ab7]">
             We Heard Your Struggles
           </h1>
           <p className="text-xl">So we built something better.</p>
 
-          <section className=" flex m-12">
+          <section className="flex flex-wrap justify-center gap-10 mt-16">
             {struggle.map((item, index) => (
               <div
-                className=" p-6 mx-6 rounded-2xl border border-gray-100 bg-white"
                 key={index}
+                className="relative w-[340px] p-8 rounded-3xl bg-white/70 backdrop-blur-lg border border-white/40 shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
               >
-                <h1 className="text-2xl font-semibold my-4">"{item.title}"</h1>
-                <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
+                {/* Big soft quote icon */}
+                <span className="absolute -top-6 left-6 text-7xl text-[#d8c0fc] opacity-40">
+                  “
+                </span>
 
-                <div className="pt-8">
-                  <h1 className="font-semibold text-[#784ab7] ">
-                    {item.author}
-                  </h1>
-                  <p>{item.index}</p>
+                <h2 className="text-xl font-semibold text-[#352055] mb-4 relative z-10">
+                  {item.title}
+                </h2>
+
+                <p className="text-gray-600 leading-relaxed relative z-10">
+                  {item.text}
+                </p>
+
+                {/* User badge */}
+                <div className="flex items-center gap-3 mt-6">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#784ab7] to-[#d8c0fc] flex items-center justify-center text-white font-bold">
+                    A
+                  </div>
+                  <div>
+                    <p className="font-semibold text-[#784ab7]">
+                      {item.author}
+                    </p>
+                    <p className="text-sm text-gray-400">Community Member</p>
+                  </div>
                 </div>
               </div>
             ))}
