@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import homeImg from "../assets/images/image 2.png";
 import img1 from "../assets/images/image 18.png";
 import logo from "../assets/logo/image 21.png";
-import heroBg from "../assets/images/top-view-calendar-with-tampon-pills.jpg";
+// import heroBg from "../assets/images/istockphoto-1383521045-612x612.jpg";
 
 interface CardProps {
   icon: string;
@@ -72,14 +72,14 @@ const Home = () => {
     {
       title: "PCOS FAQs",
       text: "Straightfoward Answers to the Questions You're (Probably) Googling",
-      button: () => (onClick) => new page(),
+      button: () => new page(),
       author: "Health Tips",
       date: "Jun 30, 2025",
     },
     {
       title: "PCOS FAQs",
       text: "Straightfoward Answers to the Questions You're (Probably) Googling",
-      button: () => (onClick) => new page(),
+      button: () => new page(),
       author: "Health Tips",
       date: "Jun 30, 2025",
     },
@@ -110,45 +110,46 @@ const Home = () => {
     <>
       <Header title="Home" />
       <main className="">
-        <section
-          className="hero relative bg-[#eeeaff] min-h-screen overflow-hidden"
-
-          // style={{
-          //   backgroundImage: `linear-gradient(rgba(238,234,255,0.95), rgba(120,74,183,0.85)), url(${heroBg})`,
-          // backgroundPosition: "bottom",
-          //   backgroundBlendMode: "overlay",
-          // }}
+           <section
+          className="hero relative min-h-screen overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(rgba(120, 74, 183, 0.6), rgba(120, 74, 183, 0.6)), url(${homeImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
         >
-          <div className="absolute w-[600px] h-[600px] bg-[#d8c0fc] opacity-40 blur-[150px] rounded-full top-0 -left-40"></div>
-          <div className="absolute w-[500px] h-[500px] bg-[#784ab7] opacity-20 blur-[130px] rounded-full bottom-0 right-0"></div>
+          {/* Soft blur overlays */}
+          <div className="absolute inset-0 bg-[#54347e] opacity-50 blur-[150px] rounded-full top-0 -left-40"></div>
+          <div className="absolute w-[500px] h-[500px] bg-[#784ab7] opacity-10 blur-[130px] rounded-full bottom-0 right-0"></div>
 
-          <div className=" relative z-10 max-w-7xl mx-auto px-6 flex justify-between items-center pt-15">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 flex justify-between items-center pt-15">
             <div className="">
-              <p className=" font-medium text-xl bg-[#d8c0fc] text-[#784ab7] inline p-3 px-6 rounded-full">
+              <p className="font-medium text-xl bg-[#d8c0fc] text-[#784ab7] inline p-3 px-6 rounded-full">
                 Your Holistic PCOS Companion
               </p>
-              <h1 className="text-7xl py-8 text-[#352055]">Built For You.</h1>
-              <p className="text-wrap text-[#784ab7] text-lg">
+              <h1 className="text-7xl font-bold py-8 text-[white]">Built For You.</h1>
+              <p className="text-wrap text-white text-lg">
                 My FemFlo is a mobile platform that helps women track their
                 cycles,
                 <br /> manage PCOS symptoms, access health tips, and connect
                 with medical experts,
                 <br /> all privately and conveniently.
               </p>
-              <button className="rounded p-3 mt-8 bg-[#784ab7] text-white">
+              <button className="rounded p-4 px-6 mt-8 bg-[#d8c0fc] text-[#784ab7] font-semibold hover:bg-white transition">
                 Get It On PlayStore
               </button>
             </div>
             <div>
               <img
                 src={homeImg}
-                alt=""
-                className="animate-[float_6s_ease-in-out_infinite]"
+                alt="FemFlo App"
+                className="animate-[float_6s_ease-in-out_infinite] drop-shadow-lg"
               />
             </div>
           </div>
-          <section className="mt-35 bg-[#d8c0fc] p-30 rounded-2xl max-w-7xl mx-auto border border-white">
-            <h1 className="text-3xl text-[#784ab7] text-center">
+          <section className="relative z-10 mt-35 bg-white/20 backdrop-blur-md p-30 rounded-2xl max-w-7xl mx-auto border border-white/40">
+            <h1 className="text-3xl text-white text-center">
               Trusted by <b>20,000</b> people in the community
             </h1>
           </section>
@@ -265,6 +266,10 @@ const Home = () => {
               </div>
             ))}
           </section>
+        </section>
+
+        <section className="waitlist">
+          
         </section>
       </main>
     </>
