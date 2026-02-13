@@ -1,7 +1,8 @@
 import Header from "../components/Header";
-import homeImg from "../assets/images/image 2.png";
+import homeImg from "../assets/images/image_2-removebg-preview.png";
 import img1 from "../assets/images/image 18.png";
 import logo from "../assets/logo/image 21.png";
+import Waitlist from "../components/Waitlist";
 // import heroBg from "../assets/images/istockphoto-1383521045-612x612.jpg";
 
 interface CardProps {
@@ -268,9 +269,7 @@ const Home = () => {
           </section>
         </section>
 
-        <section className="waitlist">
-          
-        </section>
+        <Waitlist/>
       </main>
     </>
   );
