@@ -1,7 +1,8 @@
 import Header from "../components/Header";
-import homeImg from "../assets/images/image_2-removebg-preview.png";
+import homeImg from "../assets/images/mockuper (4).png";
 import img1 from "../assets/images/image 18.png";
-import logo from "../assets/logo/image 21.png";
+import img2 from "../assets/images/image 2.png"
+import logo from "../assets/Uteri Flow logo.svg";
 import Waitlist from "../components/Waitlist";
 import { Accessibility } from "lucide-react";
 
@@ -40,18 +41,18 @@ const Home = () => {
       text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quaerat dicta odit libero itaque velit non tenetur atque sequi veniam voluptates dolor, rerum exercitationem, deserunt eligendi repudiandae cumque nam neque!",
     },
     {
-      icon: <Accessibility />,
+      icon: Accessibility ,
       title: "Accountability",
       text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quaerat dicta odit libero itaque velit non tenetur atque sequi veniam voluptates dolor, rerum exercitationem, deserunt eligendi repudiandae cumque nam neque!",
     },
     {
-      icon: "",
+      icon: Accessibility,
       title: "Privacy",
       text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quaerat dicta odit libero itaque velit non tenetur atque sequi veniam voluptates dolor, rerum exercitationem, deserunt eligendi repudiandae cumque nam neque!",
     },
   ];
 
-  const features: FeatureProps[] = [
+  const features = [
     {
       title: "Cycle & Ovulation Tracking",
       text: "Easily track your menstrual cycle and ovulation with PCOS-specific insights to understand your body's patterns.",
@@ -65,7 +66,7 @@ const Home = () => {
     {
       title: "Community Support",
       text: "Join a safe, anonymous community to share and connect with others living with PCOS.",
-      img: img1,
+      img: img2,
     },
   ];
 
@@ -112,15 +113,15 @@ const Home = () => {
       <Header title="UteriFlow" />
       <main className="">
         <section className="hero w-full bg-soft-color relative z-10 mx-auto px-6 flex justify-between items-center h-screen">
-          <div className="content flex justify-between items-center w-full max-w-7xl mx-auto">
-            <div className=" max-w-2xl">
+          <div className="content flex justify-center items-center w-full max-w-8xl mx-auto">
+            <div className="  ">
               <p className="font-medium text-xl bg-secondary-color/10 text-secondary-color inline p-3 px-6 rounded-full">
                 Your Holistic PCOS Companion
               </p>
               <h1 className="text-7xl font-bold py-8 text-primary-color">
                 Built For You.
               </h1>
-              <p className="text-wrap text-secondary-color text-lg">
+              <p className="text-wrap text-secondary-color text-lg text-justify">
                 My FemFlo is a mobile platform that helps women track their
                 cycles,
                 <br /> manage PCOS symptoms, access health tips, and connect
@@ -135,7 +136,7 @@ const Home = () => {
               <img
                 src={homeImg}
                 alt="FemFlo App"
-                className="animate-[float_6s_ease-in-out_infinite] drop-shadow-lg"
+                className="animate-[float_6s_ease-in-out_infinite] drop-shadow-lg max-w-5xl"
               />
             </div>
           </div>
@@ -148,9 +149,9 @@ const Home = () => {
         </section>
         {/* </section> */}
 
-        <section className="text-center my-20 max-w-6xl mx-auto">
+        <section className="text-center mt-30 my-20 max-w-6xl mx-auto">
           <h1 className="text-4xl font-semibold">
-            Why Choose <span className="text-primary-color">UteriFlow</span>
+            Why Choose <span className="text-secondary-color">UteriFlow</span>
           </h1>
           <div className="card-container grid grid-cols-3 gap-20 mt-15">
             {cards.map((card, index) => (
@@ -168,7 +169,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="bg-[#352055] rounded-t-4xl p-10">
+        <section className="bg-primary-color rounded-t-4xl p-10">
           <h1 className="text-[200px] text-white font-bold"> Everything </h1>
           <h1 className="text-end text-[150px] text-[#d8c0fc] font-bold">
             You Need !
@@ -180,7 +181,7 @@ const Home = () => {
                 className={`container flex justify-between items-center m-8 text-white ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
                 key={index}
               >
-                <div className="bg-[#54347e]/80 backdrop-blur-md border border-white/10 p-8 mx-6 rounded-3xl w-2/4 h-72 shadow-lg hover:shadow-[#784ab7]/40 transition duration-500">
+                <div className="bg-secondary-color/30 backdrop-blur-md border border-white/10 p-8 mx-6 rounded-3xl w-2/4 h-72 shadow-lg hover:shadow-[#784ab7]/40 transition duration-500">
                   <h1 className="text-2xl my-4">{item.title}</h1>
                   <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
                 </div>
@@ -205,7 +206,7 @@ const Home = () => {
                 <img src={logo} className="rounded-full w-14" alt="logo" />
                 <h1 className="text-2xl font-semibold my-4">{item.title}</h1>
                 <p className="text-wrap whitespace-pre-wrap">{item.text}</p>
-                <button className="rounded-full px-6 py-3 mt-8 bg-[#784ab7]  text-white shadow-md group-hover:scale-105 transition">
+                <button className="rounded-full px-6 py-3 mt-8 bg-primary-color text-white shadow-md group-hover:scale-105 transition">
                   Read More
                 </button>
                 <div className="pt-8">
@@ -219,7 +220,7 @@ const Home = () => {
           </section>
         </section>
 
-        <section className="relative overflow-hidden flex flex-col items-center py-32 bg-[#eeeaff]">
+        <section className="relative overflow-hidden flex flex-col items-center py-32 bg-soft-color">
           <h1 className="text-4xl font-bold text-[#784ab7]">
             We Heard Your Struggles
           </h1>

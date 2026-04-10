@@ -7,10 +7,10 @@ interface HeaderProps {
 
 export default function Header({ title, menus }: HeaderProps) {
   const menu = [
-    { name: "Home" },
-    { name: "About" },
-    { name: "Articles" },
-    { name: "Contact" },
+    { name: "Home" , url: "/"},
+    { name: "About" , url: "/about"},
+    { name: "Articles" , url: "/articles"},
+    // { name: "Contact" , url: "/home" },
   ];
   return (
     <main className="flex justify-between items-center bg-transparent z-20 absolute top-0 right-0 left-0 px-8 py-6">
