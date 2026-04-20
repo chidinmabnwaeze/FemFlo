@@ -299,7 +299,7 @@ const Home = () => {
             {struggle.map((item, index) => (
               <div
                 key={index}
-                className="relative w-full sm:w-[calc(50%-16px)] lg:w-[340px] p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/70 backdrop-blur-lg border border-white/40 shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                className="relative w-full sm:w-[calc(50%-16px)] lg:w-85 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/70 backdrop-blur-lg border border-white/40 shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
               >
                 {/* Big soft quote icon */}
                 <span className="absolute -top-4 sm:-top-6 left-4 sm:left-6 text-5xl sm:text-7xl text-secondary-color opacity-40">
@@ -316,7 +316,7 @@ const Home = () => {
 
                 {/* User badge */}
                 <div className="flex items-center gap-3 mt-6">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-color to-secondary-color flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-linear-to-br from-primary-color to-secondary-color flex items-center justify-center text-white font-bold text-sm">
                     A
                   </div>
                   <div>
