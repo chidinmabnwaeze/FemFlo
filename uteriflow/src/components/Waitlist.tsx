@@ -4,148 +4,143 @@ import { type WaitlistForm } from "../types/waitlist";
 import { Forminit } from "forminit";
 import { CheckCircle, AlertCircle } from "lucide-react";
 
+// move outside component
+const forminit = new Forminit();
+const FORM_ID = import.meta.env.VITE_FORM_ID;
+
+type StatusType = "idle" | "loading" | "success" | "error";
+
 const Waitlist = () => {
-  const forminit = new Forminit();
-  const formId = import.meta.env.VITE_FORM_ID;
   const [formData, setFormData] = useState<WaitlistForm>({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-  const [errors, setErrors] = useState<Partial<WaitlistForm>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [status, setStatus] = useState<StatusType>("idle");
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<WaitlistForm> = {};
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
 
-    if (!formData.first_name.trim()) {
-      newErrors.first_name = "First name is required";
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
     }
-    if (!formData.last_name.trim()) {
-      newErrors.last_name = "Last name is required";
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
     }
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = "Enter a valid email address";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [id]: value,
+      [name]: value,
     }));
 
-    // Clear error for this field when user starts typing
-    if (errors[id as keyof WaitlistForm]) {
-      setErrors((prev) => ({
-        ...prev,
-        [id]: undefined,
-      }));
-    }
+    // clear error as user types
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    const isValid = validate();
+    if (!isValid) return;
 
-    setLoading(true);
-    setSubmitStatus("idle");
+    setStatus("loading");
 
     try {
       const data = new FormData();
-      data.append("first_name", formData.first_name);
-      data.append("last_name", formData.last_name);
-      data.append("email", formData.email);
+      data.append("fi-sender-firstName", formData.firstName);
+      data.append("fi-sender-lastName", formData.lastName);
+      data.append("fi-sender-email", formData.email);
 
-      await forminit.submit(formId, data);
+      const { error } = await forminit.submit(FORM_ID, data);
+
+      if (error) {
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
 
       setFormData({
-        first_name: "",
-        last_name: "",
+        firstName: "",
+        lastName: "",
         email: "",
       });
-      setSubmitStatus("success");
-
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setSubmitStatus("error");
-    } finally {
-      setLoading(false);
+      setErrors({});
+    } catch {
+      setStatus("error");
     }
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#330030] to-[#990090] gap-4 flex flex-col justify-center items-center p-8 md:p-40 text-white min-h-screen">
+    <div className="bg-gradient-to-br from-[#330030] to-[#990090] flex flex-col justify-center items-center p-8 md:p-40 text-white min-h-screen">
       <img
         src={logo}
         alt="UteriFlow logo"
         className="h-16 w-16 md:h-20 md:w-20"
       />
-      <h1 className="font-bold text-3xl md:text-4xl">UteriFlow</h1>
+
+      <h1 className="font-bold text-3xl md:text-4xl mt-2">UteriFlow</h1>
       <h2 className="text-xl md:text-2xl font-semibold">
         Our app is coming soon!
       </h2>
-      <h1 className="text-2xl md:text-3xl font-bold">Be Among the First.</h1>
-      <p className="text-center max-w-md text-gray-100">
+
+      <p className="text-center max-w-md text-gray-100 mt-2">
         Get early access to UteriFlow and be part of a community that
         prioritizes your wellness and privacy.
       </p>
 
-      <div className="flex flex-col justify-center items-center mt-10 bg-white rounded-lg p-8 w-full max-w-md shadow-2xl">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+      <div className="mt-10 bg-white rounded-lg p-8 w-full max-w-md shadow-2xl text-black">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* First Name */}
           <div>
             <input
-              type="text"
-              id="first_name"
-              placeholder="First Name"
-              value={formData.first_name}
+              name="firstName"
+              value={formData.firstName}
               onChange={handleChange}
-              className={`w-full text-black p-3 rounded-lg border-2 transition focus:outline-none ${
-                errors.first_name
-                  ? "border-red-500 focus:border-red-600"
-                  : "border-gray-300 focus:border-primary-color"
+              placeholder="First Name"
+              className={`w-full p-3 rounded-lg border-2 ${
+                errors.firstName ? "border-red-500" : "border-gray-300"
               }`}
-              required
             />
-            {errors.first_name && (
-              <p className="text-red-600 text-sm mt-1">{errors.first_name}</p>
+            {errors.firstName && (
+              <p className="text-red-500 text-sm">{errors.firstName}</p>
             )}
           </div>
 
           {/* Last Name */}
           <div>
             <input
-              type="text"
-              id="last_name"
-              placeholder="Last Name"
-              value={formData.last_name}
+              name="lastName"
+              value={formData.lastName}
               onChange={handleChange}
-              className={`w-full text-black p-3 rounded-lg border-2 transition focus:outline-none ${
-                errors.last_name
-                  ? "border-red-500 focus:border-red-600"
-                  : "border-gray-300 focus:border-primary-color"
+              placeholder="Last Name"
+              className={`w-full p-3 rounded-lg border-2 ${
+                errors.lastName ? "border-red-500" : "border-gray-300"
               }`}
-              required
             />
-            {errors.last_name && (
-              <p className="text-red-600 text-sm mt-1">{errors.last_name}</p>
+            {errors.lastName && (
+              <p className="text-red-500 text-sm">{errors.lastName}</p>
             )}
           </div>
 
@@ -153,54 +148,47 @@ const Waitlist = () => {
           <div>
             <input
               type="email"
-              id="email"
-              placeholder="Email"
+              name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full text-black p-3 rounded-lg border-2 transition focus:outline-none ${
-                errors.email
-                  ? "border-red-500 focus:border-red-600"
-                  : "border-gray-300 focus:border-primary-color"
+              placeholder="Email"
+              className={`w-full p-3 rounded-lg border-2 ${
+                errors.email ? "border-red-500" : "border-gray-300"
               }`}
-              required
             />
             {errors.email && (
-              <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+              <p className="text-red-500 text-sm">{errors.email}</p>
             )}
           </div>
 
-          {/* Submit Button */}
+          {/* Button */}
           <button
             type="submit"
-            disabled={loading}
-            className="bg-gradient-to-r from-[#330030] to-[#990090] p-3 px-8 rounded-lg text-white font-semibold hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={status === "loading"}
+            className="bg-gradient-to-r from-[#330030] to-[#990090] text-white p-3 rounded-lg font-semibold disabled:opacity-60"
           >
-            {loading ? "Joining..." : "Join Waitlist"}
+            {status === "loading" ? "Joining..." : "Join Waitlist"}
           </button>
 
-          {/* Success Message */}
-          {submitStatus === "success" && (
-            <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg p-4 text-green-700">
-              <CheckCircle size={20} />
-              <span className="font-medium">
-                You're on the waitlist! Check your email.
-              </span>
+          {/* Success */}
+          {status === "success" && (
+            <div className="flex items-center gap-2 bg-green-50 border border-green-200 p-3 rounded text-green-700">
+              <CheckCircle size={18} />
+              <span>You're on the waitlist! 🎉</span>
             </div>
           )}
 
-          {/* Error Message */}
-          {submitStatus === "error" && (
-            <div className="flex items-center gap-2 bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-              <AlertCircle size={20} />
-              <span className="font-medium">
-                Something went wrong. Please try again.
-              </span>
+          {/* Error */}
+          {status === "error" && (
+            <div className="flex items-center gap-2 bg-red-50 border border-red-200 p-3 rounded text-red-700">
+              <AlertCircle size={18} />
+              <span>Something went wrong. Try again.</span>
             </div>
           )}
         </form>
       </div>
 
-      <p className="text-center text-sm text-gray-200 mt-6 max-w-md">
+      <p className="text-sm text-gray-200 mt-6 text-center max-w-md">
         We respect your privacy. Your information will only be used to notify
         you when UteriFlow launches.
       </p>
