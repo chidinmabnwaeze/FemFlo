@@ -93,7 +93,7 @@ const Waitlist = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#330030] to-[#990090] flex flex-col justify-center items-center p-8 md:p-40 text-white min-h-screen">
+    <div className="bg-linear-to-br from-primary-color to-secondary-color flex flex-col justify-center items-center p-8 md:p-40 text-white min-h-screen">
       <img
         src={logo}
         alt="UteriFlow logo"
@@ -165,7 +165,7 @@ const Waitlist = () => {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-gradient-to-r from-[#330030] to-[#990090] text-white p-3 rounded-lg font-semibold disabled:opacity-60"
+            className="bg-linear-to-br from-primary-color to-secondary-color text-white p-3 rounded-lg font-semibold disabled:opacity-60"
           >
             {status === "loading" ? "Joining..." : "Join Waitlist"}
           </button>
